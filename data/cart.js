@@ -1,5 +1,9 @@
 export let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+export function saveToStorage() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
 export function addToCart(productId) {
   let matchingItem;
 
@@ -19,7 +23,10 @@ export function addToCart(productId) {
     });
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  let cartQuantity = getCartQuantity (cart);
+  document.querySelector(".cart-quantity").innerHTML = cartQuantity;
+
+  saveToStorage();
 }
 
 export function getCartQuantity(cart) {
@@ -32,10 +39,17 @@ export function getCartQuantity(cart) {
 }
 
 export function deleteFromCart(array, id) {
-  let matchingItem;
-
   const index = array.findIndex((obj) => obj.productId === id); // Find the index of the object with the given id
   if (index !== -1) {
     array.splice(index, 1); // Remove the object at the found index
+  }
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem = cart.find(cartItem => cartItem.productId === productId);;
+
+  if (matchingItem){
+    matchingItem.deliveryOptionId = deliveryOptionId;
+    saveToStorage();
   }
 }

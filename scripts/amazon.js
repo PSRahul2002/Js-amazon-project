@@ -66,10 +66,10 @@ document.querySelectorAll(".add-to-cart-button").forEach((button) => {
 
     addToCart (productId);
     let cartQuantity = getCartQuantity (cart);
-    
-    console.log(cart);
-    console.log(cartQuantity);
 
     document.querySelector(".cart-quantity").innerHTML = cartQuantity;
   });
 });
+
+let cartQuantity = getCartQuantity (cart);
+document.querySelector(".cart-quantity").innerHTML = cartQuantity;
