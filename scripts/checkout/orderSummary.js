@@ -2,6 +2,7 @@ import { cart, deleteFromCart, getCartQuantity, updateDeliveryOption, saveToStor
 import { products } from "../../data/products.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 export function displayCartItems() {
   document.querySelector(".order-summary").innerHTML = ""; // Clear existing items
@@ -63,6 +64,8 @@ function attachDeleteListeners() {
 
       displayCartItems(); // Re-render the cart after deletion
       let cartQuantity = getCartQuantity (cart);
+
+      renderPaymentSummary();
     });
   });
   const totalItemsInCart = getCartQuantity(cart);
@@ -110,26 +113,29 @@ function removeObjectById(array, id) {
   document.querySelector(".cart-quantity").innerHTML = cartQuantity;
 }
 
-document.querySelectorAll('.js-delivery-option').forEach ((element) => {
-  element.addEventListener ('click', () => {
-    const {productId, deliveryOptionId} = element.dataset;
-    updateDeliveryOption(productId, deliveryOptionId);
-
-    const today = dayjs();
-
-    let x;
-
-    deliveryOptions.forEach((deliveryOption) => {
-      if (deliveryOption.id === deliveryOptionId){
-        x = deliveryOption.deliveryDays;
-      }
-    })
-
-    const deliveryDate = today.add(x, 'days');
-    const dateString = deliveryDate.format('dddd, MMMM D');
-
-    document.querySelector(`.js-delivery-date-${productId}`).innerHTML = `Delivery date: ${dateString}`;
-    
-  });
-});
-
+export function updateDeliveryDate(){
+    document.querySelectorAll('.js-delivery-option').forEach ((element) => {
+        element.addEventListener ('click', () => {
+          
+          const {productId, deliveryOptionId} = element.dataset;
+          
+          updateDeliveryOption(productId, deliveryOptionId);
+      
+          const today = dayjs();
+          let x;
+      
+          deliveryOptions.forEach((deliveryOption) => {
+            if (deliveryOption.id === deliveryOptionId){
+              x = deliveryOption.deliveryDays;
+            }
+          })
+      
+          const deliveryDate = today.add(x, 'days');
+          const dateString = deliveryDate.format('dddd, MMMM D');
+          
+      
+          document.querySelector(`.js-delivery-date-${productId}`).innerHTML = `Delivery date: ${dateString}`;
+          renderPaymentSummary();
+        });
+      });
+}

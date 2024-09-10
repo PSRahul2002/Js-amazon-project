@@ -46,10 +46,23 @@ export function deleteFromCart(array, id) {
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
-  let matchingItem = cart.find(cartItem => cartItem.productId === productId);;
+  // let matchingItem = cart.find(cartItem => cartItem.productId === productId);
 
-  if (matchingItem){
-    matchingItem.deliveryOptionId = deliveryOptionId;
-    saveToStorage();
-  }
+  // if (matchingItem){
+  //   matchingItem.deliveryOptionId = deliveryOptionId;
+  //   saveToStorage();
+  // }
+
+  let matchingItem;
+
+  cart.forEach((item) => {
+    if (item.productId === productId){
+      matchingItem = item;
+      matchingItem.deliveryOptionId = deliveryOptionId;
+      
+    }
+  });
+
+  saveToStorage();
+
 }
