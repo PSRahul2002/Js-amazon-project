@@ -135,7 +135,9 @@ export function updateDeliveryDate(){
           
       
           document.querySelector(`.js-delivery-date-${productId}`).innerHTML = `Delivery date: ${dateString}`;
+          
           renderPaymentSummary();
         });
+        
       });
 }

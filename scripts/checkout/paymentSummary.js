@@ -21,7 +21,7 @@ export function renderPaymentSummary (){
     });
 
     let totalBeforeTax = totalCost + ShippingCost;
-    let estimatedTax = (totalCost/10);
+    let estimatedTax = (totalBeforeTax / 10);
     let orderTotal = totalBeforeTax + estimatedTax;
 
     totalCost = totalCost.toFixed(2);
