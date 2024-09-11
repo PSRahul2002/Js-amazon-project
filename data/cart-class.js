@@ -73,6 +73,6 @@ class Cart {
       
         this.saveToStorage();
       }
-}
+};
 
 const businessCart = new Cart('cart-business');
