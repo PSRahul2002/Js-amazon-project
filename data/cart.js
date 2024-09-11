@@ -39,20 +39,13 @@ export function getCartQuantity(cart) {
 }
 
 export function deleteFromCart(array, id) {
-  const index = array.findIndex((obj) => obj.productId === id); // Find the index of the object with the given id
+  const index = array.findIndex((obj) => obj.productId === id);
   if (index !== -1) {
-    array.splice(index, 1); // Remove the object at the found index
+    array.splice(index, 1); 
   }
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
-  // let matchingItem = cart.find(cartItem => cartItem.productId === productId);
-
-  // if (matchingItem){
-  //   matchingItem.deliveryOptionId = deliveryOptionId;
-  //   saveToStorage();
-  // }
-
   let matchingItem;
 
   cart.forEach((item) => {
@@ -64,5 +57,4 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   });
 
   saveToStorage();
-
 }
