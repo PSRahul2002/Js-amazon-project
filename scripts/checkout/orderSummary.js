@@ -25,7 +25,7 @@ export function displayCartItems() {
         </div>
 
         <div class="cart-item-details-grid">
-          <img class="product-image" src="${matchingProduct.image}">
+          <img class="product-image" src="./${matchingProduct.image}">
 
           <div class="cart-item-details">
             <div class="product-name">${matchingProduct.name}</div>

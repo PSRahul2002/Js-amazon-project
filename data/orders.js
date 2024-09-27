@@ -73,14 +73,14 @@ export function displayOrders() {
                 let productHtml = `
                 <div class="order-details-grid">
                   <div class="product-image-container">
-                    <img src="${matchingProduct.image}">
+                    <img src="./${matchingProduct.image}">
                   </div>
                   <div class="product-details">
                     <div class="product-name">${matchingProduct.name}</div>
                     <div class="product-delivery-date">Arriving on: ${productArrival}</div>
                     <div class="product-quantity">Quantity: ${productOrdered.quantity}</div>
                     <button class="buy-again-button button-primary">
-                      <img class="buy-again-icon" src="images/icons/buy-again.png">
+                      <img class="buy-again-icon" src="./images/icons/buy-again.png">
                       <span class="buy-again-message">Buy it again</span>
                     </button>
                   </div>

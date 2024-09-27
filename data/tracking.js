@@ -37,7 +37,7 @@ export function trackingInfo (productArrival, productName, productQuantity, prod
         Quantity: ${productQuantity}
     </div>
 
-    <img class="product-image" src="${productImage}">
+    <img class="product-image" src="./${productImage}">
 
     <div class="progress-labels-container">
         <div class="progress-label">
